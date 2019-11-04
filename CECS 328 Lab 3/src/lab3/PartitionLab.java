@@ -23,28 +23,29 @@ public class PartitionLab {
         int end = array.length - 1;
 
         System.out.println(Arrays.toString(array));
-        System.out.println("Please enter a number from 1 to " + n);
-        int k = in.nextInt();
+        // System.out.println("Please enter a number from 1 to " + n);
+        // int k = in.nextInt();
     
-        boolean check = true;
-        while (check) {
-            if (k > n) {
-                System.out.println("Please enter a number between 1 and " + n);
-                k = in.nextInt();
-            }
+        // boolean check = true;
+        // while (check) {
+        //     if (k > n) {
+        //         System.out.println("Please enter a number between 1 and " + n);
+        //         k = in.nextInt();
+        //     }
 
-            else {
-                check = false;
-            }
-            quickSelect(k, array, start, end);
-        }
+        //     else {
+        //         check = false;
+        //     }
+        int k = 0;
+        quickSelect(k, array, start, end);
+        //}
         
     }
 
     public static int quickSelect(int k, int[] newArray, int start, int end) {
 
         int index = partition(newArray, start, end);
-       
+        
         // if (index == k) {
         //     return newArray[index];
         // }
@@ -60,25 +61,42 @@ public class PartitionLab {
 
     public static int partition(int[] array, int start, int end) {
         int middle = end / 2;
-        int[] tempArray = {array[start], array[middle], array[end]};
-        
-        Arrays.sort(tempArray);
-        System.out.println(Arrays.toString(tempArray));
-        int pivot = tempArray[1];
-        boolean check = true;
-        int i = 0;
-        int j = end; 
-        while (check) {
-            if (array[j] >= pivot) {
-                j--;
-            }
+              
+        int pivot = array[end];
 
-            if (array[i] <= pivot) {
-                
+        System.out.println("Pivot: " + pivot);
+        int i = start;
+        int j = start + 1;
+        int index = 0;
+
+
+        while (j != end + 1) {
+            
+            if (array[j] < pivot) {
+                i++;
+                int temp = array[j];
+                array[j] = array[i];
+                array[i] = temp;
             }
+            
+            j++;
+            
         }
-        return 5;
-        
-        
+        System.out.println("The pivot should not be moved" + Arrays.toString(array));
+        index = i + 1;
+        int temp = array[index];
+        array[index] = pivot;
+    
+        for (int k = index + 1; k < end; k++) {
+            int temp2 = array[k];
+            System.out.println(temp2);
+            array[k] = temp;
+            array[k + 1] = temp2;
+          
+        }
+
+
+        System.out.println("The pivot should be changed" + Arrays.toString(array));
+        return index;        
     }
 }
