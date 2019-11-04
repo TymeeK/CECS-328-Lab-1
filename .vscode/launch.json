@@ -1,0 +1,18 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - PartitionLab",
+            "request": "launch",
+            "mainClass": "lab3.PartitionLab",
+            "projectName": "CECS 328 Lab 3"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Test",
+            "request": "launch",
+            "mainClass": "lab3.Test",
+            "projectName": "CECS 328 Lab 3"
+        }
+    ]
+}

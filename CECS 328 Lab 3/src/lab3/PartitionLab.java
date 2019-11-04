@@ -37,33 +37,33 @@ public class PartitionLab {
         //         check = false;
         //     }
         int k = 0;
-        quickSelect(k, array, start, end);
+        int i = 0;
+        int leastNumber = quickSelect(k, array, start, end, i);
+        System.out.println("This is the least number: " + leastNumber);
         //}
         
     }
 
-    public static int quickSelect(int k, int[] newArray, int start, int end) {
+    public static int quickSelect(int k, int[] newArray, int start, int end, int i) {
 
         int index = partition(newArray, start, end);
         
-        // if (index == k) {
-        //     return newArray[index];
-        // }
-        // else if (index > k) {
-        //     quickSelect(k, newArray, start, index - 1); //or index-1???   
-        // }
-        // else {
-        //     quickSelect(k , newArray, index + 1, end);//or index+1???
-        // }
+        if (i == 2) {
+            return index + 1;
+        }
+        else if (index > k) {
+            return quickSelect(k, newArray, start, index - 1, i++); 
+        }
+        else {
+            return quickSelect(k , newArray, index + 1, end, i++);
+        }
 
-        return 5;
+        
     }
 
-    public static int partition(int[] array, int start, int end) {
-        int middle = end / 2;
-              
+    public static int partition(int[] array, int start, int end) {              
         int pivot = array[end];
-
+        System.out.println("End:" + end);
         System.out.println("Pivot: " + pivot);
         int i = start;
         int j = start + 1;
@@ -73,10 +73,10 @@ public class PartitionLab {
         while (j != end + 1) {
             
             if (array[j] < pivot) {
-                i++;
                 int temp = array[j];
                 array[j] = array[i];
                 array[i] = temp;
+                i++;
             }
             
             j++;
@@ -86,15 +86,9 @@ public class PartitionLab {
         index = i + 1;
         int temp = array[index];
         array[index] = pivot;
-    
-        for (int k = index + 1; k < end; k++) {
-            int temp2 = array[k];
-            System.out.println(temp2);
-            array[k] = temp;
-            array[k + 1] = temp2;
-          
-        }
-
+        array[end] = temp;
+        System.out.println("Last element: " + array[end]);
+        System.out.println("array at the index: " + array[index]);
 
         System.out.println("The pivot should be changed" + Arrays.toString(array));
         return index;        
